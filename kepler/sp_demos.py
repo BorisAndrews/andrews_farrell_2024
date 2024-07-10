@@ -1,5 +1,5 @@
-import av_fet_modules.terminal_options as terminal_options
-import av_fet_modules.timestepping as timestepping
+import avfet_modules.terminal_options as terminal_options
+import avfet_modules.timestepping as timestepping
 import time
 import math
 import numpy as np
@@ -198,6 +198,7 @@ timestepper_dict = {
     "andrews_farrell_L": andrews_farrell_L_timestepper,
     "andrews_farrell_A": andrews_farrell_A_timestepper,
     "andrews_farrell": andrews_farrell_A_timestepper,
+    "avfet": andrews_farrell_A_timestepper,
 }
 
 

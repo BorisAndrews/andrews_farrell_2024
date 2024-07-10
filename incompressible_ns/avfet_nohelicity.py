@@ -2,8 +2,8 @@
 Imports
 '''
 from firedrake import *
-import av_fet_modules.cheb_fet as cheb_fet
-import av_fet_modules.project_tools as project_tools
+import avfet_modules.cheb_fet as cheb_fet
+import avfet_modules.project_tools as project_tools
 from scipy import special
 import math
 import gc
@@ -107,11 +107,11 @@ k = 2  # (Max.) spatial degree (Must be >=2)
 
 # Temporal discretisation
 s = 3  # (Max.) temporal degree (Must be >=1 | Equiv. to no. of steps in timestepping scheme)
-duration = 2**(-4)
+duration = 3*2**(-6)
 timestep = Constant(2**(-10))
 
 # Setting
-Re_arr = [2**0]
+Re_arr = [2**(2*i) for i in range(0,9)]
 
 
 
@@ -277,7 +277,7 @@ for (i, Re_) in enumerate(Re_arr):
     Solve setup
     '''
     # Create ParaView file
-    pvd = VTKFile("output_hill_nohel/output_0_long/solution.pvd")
+    pvd = VTKFile("output/incompressible_ns/avfet_nohelicity/re_" + str(Re_) + "/solution.pvd")
 
     # Write to Paraview file
     u_.rename("Velocity")
@@ -286,9 +286,9 @@ for (i, Re_) in enumerate(Re_arr):
 
 
     # Create text files
-    energy_txt   = "output_hill_nohel/output_0_long/energy.txt"
-    helicity_txt = "output_hill_nohel/output_0_long/helicity.txt"
-    momentum_txt = "output_hill_nohel/output_0_long/momentum.txt"
+    energy_txt   = "output/incompressible_ns/avfet_nohelicity/re_" + str(Re_) + "/energy.txt"
+    helicity_txt = "output/incompressible_ns/avfet_nohelicity/re_" + str(Re_) + "/helicity.txt"
+    momentum_txt = "output/incompressible_ns/avfet_nohelicity/re_" + str(Re_) + "/momentum.txt"
 
     # Write to text files
     energy = assemble(1/2 * inner(u_, u_)*dx)
@@ -300,7 +300,7 @@ for (i, Re_) in enumerate(Re_arr):
     if mesh.comm.rank == 0:
         open(helicity_txt, "w").write(str(helicity) + "\n")
 
-    momentum = [assemble(u_[i]*dx) for i in range(3)]
+    momentum = [float(assemble(u_[i]*dx)) for i in range(3)]
     print(GREEN % f"Momentum: {momentum}")
     if mesh.comm.rank == 0:
         open(momentum_txt, "w").write(str(momentum) + "\n")
@@ -346,7 +346,7 @@ for (i, Re_) in enumerate(Re_arr):
         if mesh.comm.rank == 0:
             open(helicity_txt, "a").write(str(helicity) + "\n")
 
-        momentum = [assemble(u_[i]*dx) for i in range(3)]
+        momentum = [float(assemble(u_[i]*dx)) for i in range(3)]
         print(GREEN % f"Momentum: {momentum}")
         if mesh.comm.rank == 0:
             open(momentum_txt, "a").write(str(momentum) + "\n")

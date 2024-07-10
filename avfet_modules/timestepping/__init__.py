@@ -2,7 +2,7 @@
 PETSc import
 '''
 # Get chosen PETSc source
-import av_fet_modules.terminal_options as terminal_options
+import avfet_modules.terminal_options as terminal_options
 petsc_source = terminal_options.get("petsc", type=str, default="none")
 
 # If PETSc requested...
@@ -33,4 +33,4 @@ from .solve_loop import *
 '''
 Sub-module imports
 '''
-import av_fet_modules.timestepping.schemes as schemes
+import avfet_modules.timestepping.schemes as schemes

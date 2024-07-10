@@ -1,7 +1,7 @@
 from firedrake        import assemble, constant, functionspace
 from ufl              import split_functions
 from finat            import ufl
-import av_fet_modules.cheb_plus as cheb_plus
+import avfet_modules.cheb_plus as cheb_plus
 import itertools
 import numpy
 

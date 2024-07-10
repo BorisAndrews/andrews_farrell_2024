@@ -2,7 +2,7 @@
 Imports
 '''
 from firedrake import *
-import av_fet_modules.cheb_fet as cheb_fet
+import avfet_modules.cheb_fet as cheb_fet
 import gc
 import numpy as np
 
@@ -308,7 +308,7 @@ sp = {
 Solve setup
 '''
 # Create ParaView file
-pvd = File("output_euler/solution.pvd")
+pvd = File("output/compressible_ns/euler/avfet/solution.pvd")
 
 # Write to Paraview file
 (sigma_sub, mu_sub, ln_eps_sub) = sme_.subfunctions
@@ -321,12 +321,12 @@ pvd.write(sigma_sub, mu_sub, ln_eps_sub)
 
 
 # Create text files
-mass_txt            = "output_euler/mass.txt"
-momentum_txt        = "output_euler/momentum.txt"
-kinetic_energy_txt  = "output_euler/kinetic_energy.txt"
-internal_energy_txt = "output_euler/internal_energy.txt"
-energy_txt          = "output_euler/energy.txt"
-entropy_txt         = "output_euler/entropy.txt"
+mass_txt            = "output/compressible_ns/euler/avfet/mass.txt"
+momentum_txt        = "output/compressible_ns/euler/avfet/momentum.txt"
+kinetic_energy_txt  = "output/compressible_ns/euler/avfet/kinetic_energy.txt"
+internal_energy_txt = "output/compressible_ns/euler/avfet/internal_energy.txt"
+energy_txt          = "output/compressible_ns/euler/avfet/energy.txt"
+entropy_txt         = "output/compressible_ns/euler/avfet/entropy.txt"
 
 # Write to text files
 mass = assemble(sigma_**2 * dx)

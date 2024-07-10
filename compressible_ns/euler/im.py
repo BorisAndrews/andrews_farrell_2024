@@ -170,7 +170,7 @@ sp = {
 
 # Record IC values
 #   Create ParaView file
-pvd = File("output_im_euler/solution.pvd")
+pvd = File("output/compressible_ns/euler/im/solution.pvd")
 
 #   Write to ParaView file
 (sigma_out, mu_out, eps_out) = sme_.subfunctions
@@ -183,12 +183,12 @@ pvd.write(sigma_out, mu_out, eps_out)
 
 
 # Create text files
-mass_txt            = "output_im_euler/mass.txt"
-momentum_txt        = "output_im_euler/momentum.txt"
-kinetic_energy_txt  = "output_im_euler/kinetic_energy.txt"
-internal_energy_txt = "output_im_euler/internal_energy.txt"
-energy_txt          = "output_im_euler/energy.txt"
-entropy_txt         = "output_im_euler/entropy.txt"
+mass_txt            = "output/compressible_ns/euler/im/mass.txt"
+momentum_txt        = "output/compressible_ns/euler/im/momentum.txt"
+kinetic_energy_txt  = "output/compressible_ns/euler/im/kinetic_energy.txt"
+internal_energy_txt = "output/compressible_ns/euler/im/internal_energy.txt"
+energy_txt          = "output/compressible_ns/euler/im/energy.txt"
+entropy_txt         = "output/compressible_ns/euler/im/entropy.txt"
 
 # Write to text files
 mass = assemble(sigma_**2 * dx)

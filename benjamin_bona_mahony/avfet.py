@@ -2,9 +2,9 @@
 Imports
 '''
 from firedrake import *
-import av_fet_modules.cheb_fet as cheb_fet
+import avfet_modules.cheb_fet as cheb_fet
 import numpy as np
-import av_fet_modules.terminal_options as terminal_options
+import avfet_modules.terminal_options as terminal_options
 
 
 
@@ -210,9 +210,9 @@ while (float(time) < float(dur) - float(dt)/2):
     time.assign(float(time) + float(dt))
 
 # Record data
-with open("output/u.txt", "w") as file:
+with open("output/benjamin_bona_mahony/avfet/u.txt", "w") as file:
     np.savetxt(file, u_data)  # u
-with open("output/energy.txt", "w") as file:
+with open("output/benjamin_bona_mahony/avfet/energy.txt", "w") as file:
     np.savetxt(file, energy_data)  # Energy
-with open("output/h1_norm.txt", "w") as file:
+with open("output/benjamin_bona_mahony/avfet/h1_norm.txt", "w") as file:
     np.savetxt(file, h1_norm_data)  # H1 norm

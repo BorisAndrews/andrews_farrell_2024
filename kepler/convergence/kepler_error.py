@@ -1,6 +1,6 @@
 from firedrake import *
 import numpy as np
-import av_fet_modules.terminal_options as terminal_options
+import avfet_modules.terminal_options as terminal_options
 
 
 
@@ -129,7 +129,7 @@ sp = {
 '''
 Solve loop
 '''
-print(f"dt = {dt}, stages = {stages}")
+print(GREEN % f"dt = {dt}, stages = {stages}")
 
 for i in range(round(dur/dt)):
     solve(F == 0, z, bc, solver_parameters=sp)
@@ -148,7 +148,9 @@ for i in range(round(dur/dt)):
 
 
 '''
-Testing
+Error evaluation
 '''
-# print(f"u({dur}) = ", u_dt)
-print(f"error = {np.linalg.norm(u_dt[2:4] - [0.4, 0]):e}")
+error = np.linalg.norm(u_dt[2:4] - [0.4, 0])
+print(BLUE % f"error = {error:e}")
+with open("output/kepler_convergence/stages_" + str(stages) + ".txt", "a") as file:
+    file.write(str(dt) + " " + str(error) + "\n")

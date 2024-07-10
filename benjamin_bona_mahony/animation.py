@@ -4,7 +4,7 @@ Imports
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import av_fet_modules.terminal_options as terminal_options
+import avfet_modules.terminal_options as terminal_options
 
 
 
@@ -70,14 +70,16 @@ cam_speed = terminal_options.get("cam_speed", type=float, default=0)  # Camera s
 
 save_file = terminal_options.get("save_file", type=str, default=False)  # If/where to save the exported mp4
 
+dir = terminal_options.get("dir", type=str, default="output/bbm/avfet/")  # Directory in which to find data
+
 
 
 '''
 Animation
 '''
 # Load data from the files
-u = np.loadtxt('output/u.txt')
-energy = np.loadtxt('output/energy.txt')
+u = np.loadtxt(dir + "u.txt")
+energy = np.loadtxt(dir + "energy.txt")
 
 # Create a figure and axes with different widths for the subplots
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5), gridspec_kw={'width_ratios': [2, 1]})
