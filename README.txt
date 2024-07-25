@@ -58,8 +58,8 @@ Data and Paraview files will be saved in either case to
 
 
 - To generate the plots and data in Figs. 6 & 7:
-      >> mkdir -p output/kovalevskaya/im/ output/kovalevskaya/avfet/
-      >> matlab -batch "run('kovalevskaya.mlx')"
+    >> mkdir -p output/kovalevskaya/im/ output/kovalevskaya/avfet/
+    >> matlab -batch "run('kovalevskaya.mlx')"
 
 Images will be saved in "output/kovalevskaya/". Naturally, this does
 not require a Firedrake virtual environment.
